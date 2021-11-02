@@ -14,5 +14,5 @@ repositories {
 }
 
 dependencies {
-
+    implementation 'io.undertow:undertow-core:2.2.12.Final'
 }
