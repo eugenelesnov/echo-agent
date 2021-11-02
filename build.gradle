@@ -16,3 +16,12 @@ repositories {
 dependencies {
     implementation 'io.undertow:undertow-core:2.2.12.Final'
 }
+
+jar {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+
+    manifest {
+        attributes["Manifest-Version"] = "1.0"
+        attributes["Premain-Class"] = "com.github.eugenelesnov.AgentMain"
+    }
+}
