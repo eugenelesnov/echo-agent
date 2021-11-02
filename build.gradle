@@ -24,4 +24,7 @@ jar {
         attributes["Manifest-Version"] = "1.0"
         attributes["Premain-Class"] = "com.github.eugenelesnov.AgentMain"
     }
+
+    from { configurations.implementation.collect { it.isDirectory() ? it : zipTree(it) } }
+    configurations.implementation.setCanBeResolved(true)
 }
