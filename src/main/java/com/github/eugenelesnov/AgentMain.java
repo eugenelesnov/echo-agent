@@ -8,7 +8,7 @@ import java.lang.instrument.Instrumentation;
 public class AgentMain {
 
     public static void premain(String args, Instrumentation instrumentation) {
-        EchoProperties echoProperties = new EchoProperties();
+        EchoProperties echoProperties = new EchoProperties(args);
 
         Undertow server = Undertow.builder()
                 .addHttpListener(echoProperties.getPort(), echoProperties.getHost())
