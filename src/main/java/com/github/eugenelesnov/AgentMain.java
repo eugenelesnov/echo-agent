@@ -4,6 +4,10 @@ import io.undertow.Undertow;
 import io.undertow.util.Headers;
 
 import java.lang.instrument.Instrumentation;
+import java.util.Objects;
+
+import static io.undertow.Handlers.path;
+import static io.undertow.util.Methods.GET_STRING;
 
 public class AgentMain {
 
@@ -12,10 +16,15 @@ public class AgentMain {
 
         Undertow server = Undertow.builder()
                 .addHttpListener(echoProperties.getPort(), echoProperties.getHost())
-                .setHandler(exchange -> {
-                    exchange.getResponseHeaders().put(Headers.CONTENT_TYPE, "text/plain");
-                    exchange.getResponseSender().send("Application is running");
-                }).build();
+                .setHandler(
+                        path().addExactPath("/echo", exchange -> {
+                            if (Objects.equals(exchange.getRequestMethod().toString(), GET_STRING)) {
+                                exchange.getResponseHeaders().put(Headers.CONTENT_TYPE, "text/plain");
+                                exchange.getResponseSender().send("Application is running");
+                            }
+                        })
+                )
+                .build();
 
         server.start();
 
