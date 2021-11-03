@@ -8,11 +8,10 @@ import java.lang.instrument.Instrumentation;
 public class AgentMain {
 
     public static void premain(String args, Instrumentation instrumentation) {
-        int serverPort = 8000;
-        String host = "0.0.0.0";
+        EchoProperties echoProperties = new EchoProperties();
 
         Undertow server = Undertow.builder()
-                .addHttpListener(serverPort, host)
+                .addHttpListener(echoProperties.getPort(), echoProperties.getHost())
                 .setHandler(exchange -> {
                     exchange.getResponseHeaders().put(Headers.CONTENT_TYPE, "text/plain");
                     exchange.getResponseSender().send("Application is running");
