@@ -1,4 +1,4 @@
-package com.github.eugenelesnov;
+package com.github.eugenelesnov.httphandlers;
 
 import io.undertow.server.HttpHandler;
 import io.undertow.util.Headers;
@@ -8,7 +8,7 @@ import java.util.Objects;
 import static io.undertow.Handlers.path;
 import static io.undertow.util.Methods.GET_STRING;
 
-public class EchoHandler {
+public class HealthHandler {
 
     public static HttpHandler healthHandler() {
         return path().addExactPath("/echo/health", exchange -> {

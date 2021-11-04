@@ -4,6 +4,8 @@ import io.undertow.Undertow;
 
 import java.lang.instrument.Instrumentation;
 
+import static com.github.eugenelesnov.httphandlers.HealthHandler.healthHandler;
+
 public class AgentMain {
 
     public static void premain(String args, Instrumentation instrumentation) {
@@ -11,7 +13,7 @@ public class AgentMain {
 
         Undertow server = Undertow.builder()
                 .addHttpListener(echoProperties.getPort(), echoProperties.getHost())
-                .setHandler(EchoHandler.healthHandler())
+                .setHandler(healthHandler())
                 .build();
 
         server.start();
