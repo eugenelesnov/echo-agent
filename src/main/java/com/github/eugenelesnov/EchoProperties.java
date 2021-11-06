@@ -11,7 +11,7 @@ public class EchoProperties {
 
     private static final String DEFAULT_PROPERTIES_FILE = "./echo.properties";
     private static final int DEFAULT_PORT_VALUE = 8001;
-    private static final String DEFAULT_HOST_VALUE = "localhost";
+    private static final String DEFAULT_HOST_VALUE = "0.0.0.0";
 
     private final Properties properties = new Properties();
 
