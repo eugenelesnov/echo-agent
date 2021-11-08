@@ -11,7 +11,7 @@ import static io.undertow.util.Methods.GET_STRING;
 public class HealthHandler {
 
     public static HttpHandler healthHandler() {
-        return path().addExactPath("/echo/health", exchange -> {
+        return path().addExactPath("/echo/ping", exchange -> {
             if (Objects.equals(exchange.getRequestMethod().toString(), GET_STRING)) {
                 exchange.getResponseHeaders().put(Headers.CONTENT_TYPE, "text/plain");
                 exchange.getResponseSender().send("Application is running");
