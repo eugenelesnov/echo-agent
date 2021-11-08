@@ -10,9 +10,11 @@ public class AgentMain {
 
     public static void premain(String args, Instrumentation instrumentation) {
         EchoProperties echoProperties = new EchoProperties(args);
+        String host = echoProperties.getHost();
+        Integer port = echoProperties.getPort();
 
         Undertow server = Undertow.builder()
-                .addHttpListener(echoProperties.getPort(), echoProperties.getHost())
+                .addHttpListener(port, host)
                 .setHandler(healthHandler())
                 .build();
 
