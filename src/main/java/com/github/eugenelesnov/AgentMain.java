@@ -20,6 +20,6 @@ public class AgentMain {
 
         server.start();
 
-        System.out.println("Agent server is running..");
+        System.out.printf("[echo-agent] Server is running on %s:%s%n", host, port);
     }
 }
